@@ -1,0 +1,33 @@
+{% extends 'encyclopedia/layout.html' %}
+{% load static %}
+{% block body %}
+    <div class="container" style="display: flex; justify-content: center;">
+        {% if exists %}
+        <div class="alert alert-danger">
+                    <h6> File with the same title already exists </h6>
+                </div>
+                {% endif %}
+        <div class="item">
+            <h1>Create a new page</h1>
+        </div>
+        <div class="item" style="margin-top: 2rem; align-items: center;">
+            <form method="post">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" style="width: 15rem;" id="title" type="text" name="title" placeholder="Title">
+                <label for="mkd" class="item" style="margin-top: 1rem;">Your markdown:</label>
+                    
+                    <textarea class="form-control" id="mkd" name="markdowncontent" rows="20" cols="40"></textarea> 
+                <input class="item" style="margin-top: 2rem; margin-bottom: 2rem;" type="submit" value="Save">
+                
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+    window.onload = function() {
+    var searchBar = document.getElementById("search");
+    searchBar.disabled = true;
+};
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'encyclopedia/layout.html' %}
+{% load static %}
+{% block body %}
+    <div class="container" style="display: flex; justify-content: center;">
+        <div class="item">
+            <h1>Edit {{ title }}</h1>
+        </div>
+        <div class="item" style="margin-top: 2rem; align-items: center;">
+            <form method="post" action="">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" id="title" type="text" name="title" placeholder="Title" value="{{ title }}">
+                <label for="mkd" class="item" style="margin-top: 1rem;">Your markdown:</label>
+                    
+                    <textarea type class="form-control" id="mkd" name="markdowncontent" rows="15" cols="40" wrap="hard" >{{ content|safe }}</textarea> 
+                <input class="item" style="margin-top: 2rem;" type="submit" value="Save">
+                
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+    window.onload = function() {
+    var searchBar = document.getElementById("search");
+    searchBar.disabled = true;
+};
+</script>
+{% endblock %}
